@@ -57,15 +57,12 @@ class Contenedor {
 
 	async deletedById(number) {
 		try {
-			for(let i = 0; i < this.personas.length; i++){
-				if(number === this.personas[i].id){
-					this.personas.splice(number - 1, 1)
-				}	 
-			}
+			this.personas.filter(persona => persona.id != number)
+			console.log(this.personas)
 			await fs.promises.writeFile(this.file, JSON.stringify(this.personas, null))	
 			console.log('Item Borrado')
 		} catch (error) {
-			return 'Error! ID no existe o ya fue eliminado'
+			return 'El ID no existe o ya fue eliminado'
 		} 
 	}
 
